@@ -35,5 +35,14 @@ namespace UniversityRegistrar.Controllers
       return RedirectToAction("Index");
     }
 
+    public ActionResult Details(int id)
+    {
+      Student thisStudent = _db.Students
+          // .Include(item => item.JoinEntities)
+          // .ThenInclude(join => join.Course)
+          .FirstOrDefault(student => student.StudentId == id);
+      return View(thisStudent);
+    }
+
   }
 }

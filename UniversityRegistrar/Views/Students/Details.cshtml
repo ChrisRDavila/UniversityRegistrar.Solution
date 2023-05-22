@@ -1,0 +1,36 @@
+@{
+  Layout = "_Layout";
+}
+
+@using UniversityRegistrar.Models
+@model UniversityRegistrar.Models.Student
+
+<h2>Student Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.StudentName): @Html.DisplayFor(model => model.StudentName)</h3>  
+<h3>@Html.DisplayNameFor(model => model.Enrollment): @Html.DisplayFor(model => model.Category.Enrollment)</h3>
+
+<!-- @if(@Model.JoinEntities.Count == 0)
+{
+  <p>This item does not have any tags yet!</p>
+}
+else
+{
+  <h4>This item has the following tags:</h4>
+  <ul>
+    @foreach(ItemTag join in Model.JoinEntities)
+    {
+      <li>Tag: @join.Tag.Title</li>
+      @using (Html.BeginForm("DeleteJoin", "Items"))
+      {
+        @Html.Hidden("joinId", @join.ItemTagId)
+        <input type="submit" value="Delete"/>
+      }
+    }
+  </ul>
+} -->
+
+<p>@Html.ActionLink("Back to list", "Index")</p>
+<p>@Html.ActionLink("Edit Student", "Edit", new { id = Model.StudentId })</p>
+@* <p>@Html.ActionLink("Add a Courses", "AddCourses", new { id = Model.StudentId })</p> *@
+<p>@Html.ActionLink("Delete Student", "Delete", new { id = Model.StudentId })</p>
