@@ -80,5 +80,18 @@ namespace UniversityRegistrar.Controllers
       return View(thisStudent);
     }
 
+    [HttpPost]
+    public ActionResult AddCourse(Student student, int courseId)
+    {
+      #nullable enable
+      StudentCourse? joinEntity = _db.StudentCourses.FirstOrDefault(join => (join.CourseId == courseId && join.StudentId == student.StudentId));
+      #nullable disable
+      if (joinEntity == null && courseId != 0)
+      {
+        _db.StudentCourses.Add(new StudentCourse() { CourseId = courseId, StudentId = student.StudentId });
+        _db.SaveChanges();
+      }
+      return RedirectToAction("Details", new { id = student.StudentId });
+    }
   }
 }
