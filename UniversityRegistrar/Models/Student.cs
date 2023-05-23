@@ -9,7 +9,6 @@ namespace UniversityRegistrar.Models
   {
     public int StudentId { get; set; }
     [Required(ErrorMessage = "The students name field can't be empty!")]
-
     public string StudentName { get; set; }
     public DateTime Enrollment { get; set; }
     public List<StudentCourse> JoinEntities { get; }
