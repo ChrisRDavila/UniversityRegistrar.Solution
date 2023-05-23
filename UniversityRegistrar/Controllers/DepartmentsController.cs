@@ -8,7 +8,18 @@ namespace UniversityRegistrar.Controllers
 {
   public class DepartmentController : Controller
   {
-    private readonly UniversityRegistrar _db;
-    public Department
+    private readonly UniversityRegistrarContext _db;
+    public DepartmentController(UniversityRegistrarContext db)
+    {
+      _db = db;
+    }
+
+    public ActionResult Index()
+    {
+      List<Department> model = _db.Departments
+                                    .OrderBy(department => department.DepartmentName)
+                                    .ToList();
+      return View(model);
+    }
   }
 }
