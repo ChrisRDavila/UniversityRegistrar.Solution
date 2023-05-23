@@ -9,7 +9,7 @@
 <hr />
 <h3>@Html.DisplayNameFor(model => model.StudentName): @Html.DisplayFor(model => model.StudentName)</h3>  
 <h3>@Html.DisplayNameFor(model => model.Enrollment): @Html.DisplayFor(model => model.Enrollment)</h3>
-<h3>@Html.DisplayNameFor(model => model.Department): @Html.DisplayFor(model => model.Department)</h3>
+<h3>@Html.DisplayNameFor(model => model.Department): @Html.DisplayFor(model => model.Department.DepartmentName)</h3>
 @if(@Model.JoinEntities.Count == 0)
 {
   <p>This student has not added any courses yet!</p>
