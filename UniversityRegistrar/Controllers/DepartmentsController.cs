@@ -21,5 +21,27 @@ namespace UniversityRegistrar.Controllers
                                     .ToList();
       return View(model);
     }
+
+    public ActionResult Create()
+    {
+      return View();
+    }
+
+    [HttpPost]
+    public ActionResult Create(Department department)
+    {
+      _db.Departments.Add(department);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    public ActionResult Details(int id)
+    {
+      Department thisDepartment = _db.Departments
+                                  .Include(department => department.Students)
+                                  // .ThenInclude(department => department.Courses)
+                                  .FirstOrDefault(department => department.DepartmentId == id);
+      return View(thisDepartment);
+    }
   }
 }
