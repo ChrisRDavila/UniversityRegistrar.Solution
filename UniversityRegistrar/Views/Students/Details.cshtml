@@ -9,8 +9,28 @@
 <hr />
 <h3>@Html.DisplayNameFor(model => model.StudentName): @Html.DisplayFor(model => model.StudentName)</h3>  
 <h3>@Html.DisplayNameFor(model => model.Enrollment): @Html.DisplayFor(model => model.Enrollment)</h3>
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This student has not added any courses yet!</p>
+}
+else
+{
+  <h4>This student has enrolled in the following courses:</h4>
+  <ul>
+    @foreach(StudentCourse join in Model.JoinEntities)
+    {
+      <li>Course: @join.Course.CourseName</li>
+      @using (Html.BeginForm("DeleteJoin", "Students"))
+      {
+        @Html.Hidden("joinId", @join.StudentCourseId)
+        <input type="submit" value="Delete"/>
+      }
+    }
+  </ul>
+}
+
 
 <p>@Html.ActionLink("Back to list", "Index")</p>
 <p>@Html.ActionLink("Edit Student", "Edit", new { id = Model.StudentId })</p>
-@* <p>@Html.ActionLink("Add a Courses", "AddCourses", new { id = Model.StudentId })</p> *@
+<p>@Html.ActionLink("Add a Course", "AddCourse", new { id = Model.StudentId })</p>
 <p>@Html.ActionLink("Delete Student", "Delete", new { id = Model.StudentId })</p>

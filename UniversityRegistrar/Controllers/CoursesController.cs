@@ -24,8 +24,8 @@ namespace UniversityRegistrar.Controllers
     public ActionResult Details(int id)
     {
       Course thisCourse = _db.Courses
-          // .Include(course => course.JoinEntities)
-          // .ThenInclude(join => join.Student)
+          .Include(course => course.JoinEntities)
+          .ThenInclude(join => join.Student)
           .FirstOrDefault(course => course.CourseId == id);
       return View(thisCourse);
     }
@@ -91,6 +91,15 @@ namespace UniversityRegistrar.Controllers
         _db.SaveChanges();
       }
       return RedirectToAction("Details", new { id = course.CourseId });
+    }
+
+    [HttpPost]
+    public ActionResult DeleteJoin(int joinId)
+    {
+      StudentCourse joinEntry = _db.StudentCourses.FirstOrDefault(entry => entry.StudentCourseId == joinId);
+      _db.StudentCourses.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
   }
 }    

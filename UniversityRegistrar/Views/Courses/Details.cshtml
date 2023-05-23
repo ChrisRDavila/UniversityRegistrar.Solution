@@ -8,23 +8,24 @@
 <h2>Course Details</h2>
 <hr />
 <h3>@Html.DisplayNameFor(model => model.CourseName): @Html.DisplayFor(model => model.CourseName)</h3>
+<h3>@Html.DisplayNameFor(model => model.CourseNumber): @Html.DisplayFor(model => model.CourseNumber)</h3>
 
 
-  <h4>Students enrolled in the course:</h4>
-  <ul>
-  @foreach(StudentCourse join in Model.JoinEntities)
+<h4>Students enrolled in the course:</h4>
+<ul>
+@foreach(StudentCourse join in Model.JoinEntities)
+{
+  <li>@join.Student.StudentName</li>
+  @using (Html.BeginForm("DeleteJoin", "Courses"))
   {
-    <li>@join.Student.StudentName</li>
-    @using (Html.BeginForm("DeleteJoin", "Courses"))
-    {
-      @Html.Hidden("joinId", @join.StudentCourseId)
-      <input type="submit" value="Delete"/>
-    }
+    @Html.Hidden("joinId", @join.StudentCourseId)
+    <input type="submit" value="Delete"/>
   }
-  </ul>
+}
+</ul>
 
 
 <p>@Html.ActionLink("Back to list", "Index")</p>
-<p>@Html.ActionLink("Add an Student", "AddStudent", new { id = Model.CourseId })</p>
+<p>@Html.ActionLink("Add a Student", "AddStudent", new { id = Model.CourseId })</p>
 <p>@Html.ActionLink("Edit Course", "Edit", new { id = Model.CourseId })</p>
 <p>@Html.ActionLink("Delete Course", "Delete", new { id = Model.CourseId })</p>
