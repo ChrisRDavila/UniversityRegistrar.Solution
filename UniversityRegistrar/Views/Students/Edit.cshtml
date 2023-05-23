@@ -16,7 +16,9 @@
   @Html.EditorFor(model => model.StudentName)
   @Html.LabelFor(model => model.Enrollment)
   @Html.EditorFor(model => model.Enrollment)
-
+  @Html.LabelFor(model => model.Department)
+  @Html.DropDownList("DepartmentId")
+  
   @* @Html.LabelFor(model => model.Courses)
   @Html.DropDownList("CoursesId") *@
 
