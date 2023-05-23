@@ -17,6 +17,7 @@ namespace UniversityRegistrar.Controllers
     public ActionResult Index()
     {
       List<Student> model = _db.Students
+                              .Include(student => student.Department)
                               .OrderBy(student => student.StudentName)
                               .ToList();
       return View(model);                        
@@ -24,7 +25,7 @@ namespace UniversityRegistrar.Controllers
 
     public ActionResult Create()
     {
-      ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "Name");
+      // ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "DepartmentName");
       return View();
     }
 
@@ -33,7 +34,7 @@ namespace UniversityRegistrar.Controllers
     {
       if (!ModelState.IsValid)
       {
-        ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "Name");
+        ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "DepartmentName");
         return View(student);
       }
       else
