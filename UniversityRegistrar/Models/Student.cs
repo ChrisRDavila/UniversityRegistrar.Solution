@@ -12,5 +12,8 @@ namespace UniversityRegistrar.Models
     public string StudentName { get; set; }
     public DateTime Enrollment { get; set; }
     public List<StudentCourse> JoinEntities { get; }
+    public int DepartmentId { get; set; }
+    public Department Department { get; set; }
+
   }
 }
