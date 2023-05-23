@@ -58,6 +58,12 @@ namespace UniversityRegistrar.Controllers
       return RedirectToAction("Index");
     }
 
+    public ActionResult Delete(int id)
+    {
+      Student thisStudent = _db.Students.FirstOrDefault(student => student.StudentId == id);
+      return View(thisStudent);
+    }
+
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
@@ -65,6 +71,13 @@ namespace UniversityRegistrar.Controllers
       _db.Students.Remove(thisStudent);
       _db.SaveChanges();
       return RedirectToAction("Index");
+    }
+
+    public ActionResult AddCourse(int id)
+    {
+      Student thisStudent = _db.Students.FirstOrDefault(students => students.StudentId == id);
+      ViewBag.CourseId = new SelectList(_db.Courses, "CourseId", "CourseName");
+      return View(thisStudent);
     }
 
   }
