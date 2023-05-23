@@ -24,6 +24,7 @@ namespace UniversityRegistrar.Controllers
 
     public ActionResult Create()
     {
+      ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "Name");
       return View();
     }
 
@@ -32,6 +33,7 @@ namespace UniversityRegistrar.Controllers
     {
       if (!ModelState.IsValid)
       {
+        ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "Name");
         return View(student);
       }
       else
@@ -54,6 +56,7 @@ namespace UniversityRegistrar.Controllers
     public ActionResult Edit(int id)
     {
       Student thisStudent = _db.Students.FirstOrDefault(student => student.StudentId == id);
+      ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "DepartmentName");
       return View(thisStudent);
     }
 

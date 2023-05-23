@@ -6,10 +6,10 @@ using System.Linq;
 
 namespace UniversityRegistrar.Controllers
 {
-  public class DepartmentController : Controller
+  public class DepartmentsController : Controller
   {
     private readonly UniversityRegistrarContext _db;
-    public DepartmentController(UniversityRegistrarContext db)
+    public DepartmentsController(UniversityRegistrarContext db)
     {
       _db = db;
     }
@@ -43,5 +43,20 @@ namespace UniversityRegistrar.Controllers
                                   .FirstOrDefault(department => department.DepartmentId == id);
       return View(thisDepartment);
     }
+
+    public ActionResult Edit(int id)
+    {
+      Department thisDepartment = _db.Departments.FirstOrDefault(department => department.DepartmentId == id);
+      return View(thisDepartment);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Department department)
+    {
+      _db.Departments.Update(department);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
   }
 }
