@@ -1,8 +1,8 @@
-# (Application Name) remove parens
+# (UniversityRegistrar.Solution)
 
-#### (Brief Description of Application) remove parens
+#### (Introduction to Many to many relationship) 
 
-#### By (Your Name Here) remove parans
+#### By (Christopher Davila)
 
 ## Technologies Used
 
